@@ -38,5 +38,72 @@ namespace ZH2_macskak
                 Cats.Add(new Cat(name, age, breed));
             }
         }
+
+        public Cat OldestCat()
+        {
+            int maxIDX = 0;
+            for(int i = 1; i < Cats.Count; i++)
+            {
+                if(Cats[maxIDX].Age < Cats[i].Age)
+                {
+                    maxIDX = i;
+                }
+            }
+            return Cats[maxIDX];
+        }
+
+        public Cat OldestCat(CatBreed breed)
+        {
+            int maxIDX = -1;
+            int maxAge = int.MinValue;
+            for (int i = 0; i < Cats.Count; i++)
+            {
+                if (Cats[i].Breed == breed)
+                {
+                    if (maxAge < Cats[i].Age)
+                    {
+                        maxIDX = i;
+                        maxAge = Cats[i].Age;
+                    }
+                }
+            }
+            if (maxIDX != -1)
+            {
+                return Cats[maxIDX];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public double AVGage(CatBreed breed)
+        {
+            double avgAge = 0;
+            int count = 0;
+            for(int i = 0; i < Cats.Count; i++)
+            {
+                if (Cats[i].Breed == breed)
+                {
+                    avgAge += Cats[i].Age;
+                    count++;
+                }
+            }
+            avgAge = avgAge / count;
+            return Math.Round(avgAge, 2);
+        }
+
+        public Cat[] SelectCats(CatBreed breed)
+        {
+            List<Cat> selected = new List<Cat>();
+            foreach(Cat c in Cats)
+            {
+                if(c.Breed == breed)
+                {
+                    selected.Add(c);
+                }
+            }
+            return selected.ToArray();
+        }
     }
 }

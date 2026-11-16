@@ -12,6 +12,14 @@ namespace ZH2_macskak
         static void Main(string[] args)
         {
             CrazyCatLady margaret = new CrazyCatLady("cats.csv");
+            Console.WriteLine("Oldest: " + margaret.OldestCat().AllData());
+            Console.WriteLine("Oldest orange: " + margaret.OldestCat(CatBreed.orange).AllData());
+            Console.WriteLine("Average orange: " + margaret.AVGage(CatBreed.orange));
+            Cat[] kitties =  margaret.SelectCats(CatBreed.tabby);
+            foreach(Cat k in kitties)
+            {
+                Console.WriteLine(k.AllData());
+            }
         }
     }
 }
